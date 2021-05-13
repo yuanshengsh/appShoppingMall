@@ -17,6 +17,7 @@ import React, {Component} from 'react'
         //   const RadioItem = Radio.RadioItem
           return (
               <div className="page-register">
+                  注册！
                   {/* <Logo/>
                   <List>
                       <InputItem onChange={value => this.handleChange('username', value)}>lbj-账号</InputItem>
