@@ -7,17 +7,7 @@ import  { useState, useEffect } from 'react';
 const Header = () => {
   const [current, setCurrent] = useState('index');
   const handleClick = e => {
-    switch (e.key) {
-      case 'index':
-        break;
-      case 'login':
-        // props.history.push('/login')
-        break;
-      default:
-        break;
-    }
     setCurrent(e.key);
-
   };
     return (
         <Menu onClick={handleClick} selectedKeys={[current]} mode="horizontal">
@@ -34,7 +24,7 @@ const Header = () => {
           <Link to='/login'>登陆</Link>
         </Menu.Item>
         <Menu.Item key="register">
-          <Link to='/register'>注册</Link>
+          <Link to='/register'>[注册]</Link>
         </Menu.Item>
       </Menu>
     );
