@@ -1,10 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.less';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
 import { Menu } from 'antd';
-import  { useState, useEffect } from 'react';
 import { MailOutlined, AppstoreOutlined, SettingOutlined } from '@ant-design/icons';
 import 'antd/dist/antd.css';
 
@@ -26,12 +23,13 @@ import CheckLogin from './components/checkLogin/CheckLogin'
 // 引入页面路由组件
 import Login from './containers/login/login'
 import Register from './containers/register/register'
-
+import App from './App.tsx';
+import reportWebVitals from './reportWebVitals';
 // 生成store
 import reducer from './reducer'
 // const current = 'index';
 const store = createStore(reducer, compose(
-    applyMiddleware(thunk), //解决redux异步问题
+    applyMiddleware(thunk), // 解决redux异步问题
     window.devToolsExtension ? window.devToolsExtension() : f => f // chrome控制台redux工具
 ));
 ReactDOM.render(

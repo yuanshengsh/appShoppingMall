@@ -1,24 +1,39 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 //   import {List, InputItem, WingBlank, WhiteSpace, Button, Radio} from 'antd-mobile'
 //   import Logo from '../../components/logo/logo'
 
-  class Register extends Component {
-      constructor(props) {
-          super(props);
-          this.state = {
-              username: '', //账号
-              pwd: '', // 密码
-              pwdConfirm: '', // 确认密码
-              type: 'worker', // 用户类型 默认求职者
-          }
-      }
+class Register extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            // username: '', //账号
+            // pwd: '', // 密码
+            // pwdConfirm: '', // 确认密码
+            // type: 'worker', // 用户类型 默认求职者
+        }
+    }
 
-      render() {
+    /*
+    *     去登录
+    * */
+    // handleGoLogin() {
+    // }
+
+    /*
+    *     绑定表单值
+    * */
+    handleChange(key, val) {
+        this.setState({
+            [key]: val
+        })
+    }
+
+    render() {
         //   const RadioItem = Radio.RadioItem
-          return (
-              <div className="page-register">
-                  注册！
-                  {/* <Logo/>
+        return (
+            <div className="page-register">
+                注册！
+                {/* <Logo/>
                   <List>
                       <InputItem onChange={value => this.handleChange('username', value)}>lbj-账号</InputItem>
                       <InputItem onChange={value => this.handleChange('pwd', value)}>lbj-密码</InputItem>
@@ -41,25 +56,9 @@ import React, {Component} from 'react'
                       <WhiteSpace></WhiteSpace>
                       <Button onClick={this.handleGoLogin.bind(this)} type="primary">已有账号，去登录</Button>
                   </WingBlank> */}
-              </div>
-          )
-      }
+            </div>
+        )
+    }
+}
 
-      /*
-      *     去登录
-      * */
-      handleGoLogin() {
-          this.props.history.push('/login')
-      }
-
-      /*
-      *     绑定表单值
-      * */
-      handleChange(key, val) {
-          this.setState({
-              [key]: val
-          })
-      }
-  }
-
-  export default Register
+export default Register

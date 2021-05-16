@@ -7,11 +7,26 @@ class Protocol extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: '', //账号
-            pwd: '', // 密码
-            pwdConfirm: '', // 确认密码
-            type: 'worker', // 用户类型 默认求职者
+            // username: '', //账号
+            // pwd: '', // 密码
+            // pwdConfirm: '', // 确认密码
+            // type: 'worker', // 用户类型 默认求职者
         }
+    }
+
+    /*
+    *     去登录
+    * */
+    // handleGoLogin() {
+    // }
+
+    /*
+    *     绑定表单值
+    * */
+    handleChange(key, val) {
+        this.setState({
+            [key]: val
+        })
     }
 
     render() {
@@ -44,21 +59,6 @@ class Protocol extends Component {
                   </WingBlank> */}
             </div>
         )
-    }
-
-    /*
-    *     去登录
-    * */
-    handleGoLogin() {
-    }
-
-    /*
-    *     绑定表单值
-    * */
-    handleChange(key, val) {
-        this.setState({
-            [key]: val
-        })
     }
 }
 

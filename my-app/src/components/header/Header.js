@@ -1,8 +1,7 @@
-import React from 'react';
+import  React,{ useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu } from 'antd';
 import { BarcodeOutlined, AppstoreOutlined, HomeOutlined , PictureOutlined} from '@ant-design/icons';
-import  { useState, useEffect } from 'react';
 
 const Header = () => {
   const [current, setCurrent] = useState('index');
