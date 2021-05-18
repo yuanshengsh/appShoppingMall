@@ -3,13 +3,13 @@ import './App.less';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 
 // 引入页面路由组件
-import Login from './containers/login/login';
-import Register from './containers/register/register';
-import Protocol from './containers/protocol/protocol';
+import Login from './containers/login/login.tsx';
+import Register from './containers/register/register.tsx';
+import Protocol from './containers/protocol/protocol.tsx';
 import Header from './components/header/Header'
 // import logo from './logo.svg';
 
-function App(props) {
+function App(props: any) {
   return (
     <div className="App">
       <BrowserRouter>

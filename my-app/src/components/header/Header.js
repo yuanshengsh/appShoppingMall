@@ -2,6 +2,7 @@ import  React,{ useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu } from 'antd';
 import { BarcodeOutlined, AppstoreOutlined, HomeOutlined , PictureOutlined} from '@ant-design/icons';
+import './Header.less';
 
 const Header = () => {
   const [current, setCurrent] = useState('index');
@@ -9,7 +10,8 @@ const Header = () => {
     setCurrent(e.key);
   };
     return (
-        <Menu onClick={handleClick} selectedKeys={[current]} mode="horizontal">
+        <div className="container-header">
+<Menu onClick={handleClick} selectedKeys={[current]} mode="horizontal">
         <Menu.Item key="index" icon={<HomeOutlined />}>
           <Link to='/'>首页</Link>
         </Menu.Item>
@@ -26,6 +28,7 @@ const Header = () => {
           <Link to='/register'>[注册]</Link>
         </Menu.Item>
       </Menu>
+        </div>
     );
 };
 

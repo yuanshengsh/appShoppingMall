@@ -1,6 +1,6 @@
 import {Component} from 'react';
 import {withRouter} from 'react-router-dom'
-import {axios} from 'axios'
+import {axios} from 'axios';
 // @withRouter
 class CheckLogin extends Component {
     constructor(props) {    

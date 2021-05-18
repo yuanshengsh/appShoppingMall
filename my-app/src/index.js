@@ -20,18 +20,17 @@ import {BrowserRouter as Router, Route} from 'react-router-dom'
 // 引入判断是否登录组件
 import CheckLogin from './components/checkLogin/CheckLogin'
 
-// 引入页面路由组件
-import Login from './containers/login/login'
-import Register from './containers/register/register'
 import App from './App.tsx';
 import reportWebVitals from './reportWebVitals';
-// 生成store
-import reducer from './reducer'
-// const current = 'index';
-const store = createStore(reducer, compose(
-    applyMiddleware(thunk), // 解决redux异步问题
-    window.devToolsExtension ? window.devToolsExtension() : f => f // chrome控制台redux工具
-));
+// // 生成store
+// import reducer from './reducer'
+// // const current = 'index';
+// const store = createStore(reducer, compose(
+//     applyMiddleware(thunk), // 解决redux异步问题
+//     window.devToolsExtension ? window.devToolsExtension() : f => f // chrome控制台redux工具
+// ));
+import store from './store/index';
+
 ReactDOM.render(
   <React.StrictMode>
     <App />

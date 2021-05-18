@@ -37,7 +37,10 @@ module.exports = {
         "@typescript-eslint/no-use-before-define": "off",
         "import/prefer-default-export":"off",
         "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
-        "pathGroupsExcludedImportTypes":"off"
+        "pathGroupsExcludedImportTypes":"off",
+        "react/jsx-props-no-spreading":"off",
+        "camelcase": [1, {"properties": "never"}],
+        "no-param-reassign": "off"
     },
     "overrides": [
         {
