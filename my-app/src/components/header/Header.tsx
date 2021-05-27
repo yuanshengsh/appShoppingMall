@@ -48,7 +48,6 @@ const Header = (props) => {
 
   return (
     <div className="container-header">
-      current:{current}
       <Menu onClick={handleClick} selectedKeys={[current]} mode="horizontal">
         <Menu.Item key="/index" icon={<HomeOutlined />}>
           <Link to='/'>首页</Link>
@@ -70,9 +69,7 @@ const Header = (props) => {
           </Menu.Item>
         )}
         {isLogin && (
-          <Menu.Item key="/login">
-            <Link to='/'>{user.user_name}</Link>
-          </Menu.Item>
+          <span>{user.user_name}</span>
         )}
         {isLogin && (
           <Menu.Item key="/register">

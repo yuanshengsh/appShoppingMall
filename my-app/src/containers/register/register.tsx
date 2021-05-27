@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-//   import {List, InputItem, WingBlank, WhiteSpace, Button, Radio} from 'antd-mobile'
-//   import Logo from '../../components/logo/logo'
-import { Form, Input, Button, message, Card } from 'antd';
+import { Form, Input, Button, message, Card, Row, Col } from 'antd';
 import axios from "axios";
 import './register.less';
 
@@ -12,20 +10,35 @@ const layout = {
 const tailLayout = {
   wrapperCol: { span: 24 },
 };
-class Register extends Component {
+
+type RegisterState = {
+  mobile: string,
+  name: string,
+  password: string,
+  confirmPassword: string,
+  captcha: string,
+  pic: string,
+}
+
+class Register extends Component<any, RegisterState> {
   constructor(props) {
     super(props);
     this.state = {
-      // username: '', //账号
-      // pwd: '', // 密码
-      // pwdConfirm: '', // 确认密码
-      // type: 'worker', // 用户类型 默认求职者
+      mobile: '', // 账号
+      name: '', // 密码
+      password: '', // 密码
+      confirmPassword: '', // 确认密码
+      captcha: '',
+      pic: ''
     }
+    const { confirmPassword, pic } = this.state
+    console.log(confirmPassword);
+    console.log(pic);
   }
 
   onFinish = (values: any) => {
     console.log('Success:', values);
-    const { mobile, name, password, captcha } = values;
+    const { mobile, name, password, captcha } = this.state;
     const params = {
       mobile: Number(mobile),
       name,
@@ -51,6 +64,29 @@ class Register extends Component {
     console.log('Failed:', errorInfo);
   };
 
+  getCaptcha = () => {
+    const { mobile } = this.state;
+    axios.get(`api/captcha/pic?mobile=${mobile}`)
+      .then(res => {
+        if (res.data.errno === 0) {
+          console.log('1111');
+        } else {
+          message.error('注册失败，请重试');
+        }
+      })
+  };
+
+  onChange = (allFields) => {
+    console.log(allFields, 'allFields');
+    if (allFields) {
+      const obj = {}
+      allFields.forEach(filed => {
+        obj[filed.name] = filed.value
+      });
+      this.setState({ ...obj })
+    }
+  };
+
   render() {
     return (
       <div className="page-register">
@@ -61,33 +97,43 @@ class Register extends Component {
             initialValues={{ remember: true }}
             onFinish={this.onFinish}
             onFinishFailed={this.onFinishFailed}
+            onFieldsChange={(_, allFields) => {
+              this.onChange(allFields);
+            }}
           >
             <Form.Item
               label="手机号码"
               name="mobile"
-              rules={[{ required: true, message: '请输入手机号码' }]}
+              rules={[{ required: true, message: '请输入11位手机号码' }]}
+              extra="请输入11位手机号码"
             >
-              <Input />
+              <Input
+              />
             </Form.Item>
             <Form.Item
               label="用户名"
               name="name"
               rules={[{ required: true, message: '请输入用户名' }]}
+              extra="请输入用户名"
             >
-              <Input />
+              <Input
+              />
             </Form.Item>
 
             <Form.Item
               label="密码"
               name="password"
               rules={[{ required: true, message: '请输入密码!' }]}
+              extra="请输入密码"
             >
-              <Input.Password />
+              <Input.Password
+              />
             </Form.Item>
             <Form.Item
               label="确认密码"
               name="confirmPassword"
               rules={[{ required: true, message: '请输入确认密码!' }]}
+              extra="请再次输入密码"
             >
               <Input.Password />
             </Form.Item>
@@ -98,15 +144,21 @@ class Register extends Component {
             >
               <Input />
             </Form.Item>
-            <Form.Item
-              label="手机验证码"
-              name="captcha"
-              rules={[{ required: true, message: '请输入手机验证码!' }]}
-            >
-              <Input />
-              {/* <Button type="primary" htmlType="submit">
-              获取验证码
-            </Button> */}
+            <Form.Item label="验证码" extra="请输入手机验证码">
+              <Row gutter={8}>
+                <Col span={12}>
+                  <Form.Item
+                    name="captcha"
+                    noStyle
+                    rules={[{ required: true, message: '请输入手机验证码' }]}
+                  >
+                    <Input />
+                  </Form.Item>
+                </Col>
+                <Col span={12}>
+                  <Button onClick={() => this.getCaptcha()}>获取验证码</Button>
+                </Col>
+              </Row>
             </Form.Item>
             <Form.Item {...tailLayout}>
               <Button type="primary" htmlType="submit">
