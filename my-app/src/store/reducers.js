@@ -13,9 +13,11 @@ function pageTitle (state = defaultState.pageTitle,action) {
 }
 
 function user (state = defaultState.user, action){
+    console.log(action,'action')
+    console.log(state,'state')
     switch (action.type) {
         case 'SET_USER':
-        return action.data
+        return action?.payload || {}
         default:
         return state
     }

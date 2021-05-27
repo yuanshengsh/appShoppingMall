@@ -33,9 +33,9 @@ import store from './store/index';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
     <Provider store={store}>
-  </Provider> 
+      <App />
+    </Provider> 
   </React.StrictMode>,
 document.getElementById('root')
 );

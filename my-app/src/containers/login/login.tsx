@@ -3,7 +3,8 @@ import { Form, Input, Button, Checkbox, Row, Col, message, Card } from 'antd';
 import './login.less';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import { connect } from 'react-redux'
-import { setUser } from '../../store/action';
+// import { setUser } from '../../store/action';
+import { loginUser } from '../../actions/authActions'
 
 const layout = {
   labelCol: { span: 4 },
@@ -13,15 +14,35 @@ const tailLayout = {
   wrapperCol: { span: 24 },
 };
 
-class Login extends Component {
+interface LoginState {
+  name: string,
+  password: string,
+  errors: Record<any, any>
+}
+
+class Login extends Component<any, LoginState> {
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {
+      name: '',
+      password: '',
+      errors: {}
+    }
+    const { errors, name, password } = this.state;
   }
 
   onFinish = (values: any) => {
     console.log('Success:', values);
-    setUser(values);
+    // setUser(values);
+    const { name, password } = values;
+
+    const newUser = {
+      name,
+      password
+    }
+    const login = this.props;
+    // 点击登录的时候把数据存入redux的authActions.js中
+    login.loginUser(newUser)
   };
 
   onFinishFailed = (errorInfo: any) => {
@@ -78,20 +99,22 @@ class Login extends Component {
   }
 }
 
+// 将返回的状态转换成属性
 const mapStateToProps = (state) => ({
-  user: state.user,
+  // auth 在reducers下定义的一大的reducers
+  // auth :state.auth,
+  errors: state.errors
 })
 
 // mapDispatchToProps：将dispatch映射到组件的props中
-const mapDispatchToProps = function (dispatch, ownProps) {
-  return {
-    setUser(data, data2) {
-      console.log('data', data);
-      console.log('data2', data2);
-      dispatch(setUser(data))
-    }
-  }
-}
+// const mapDispatchToProps = function (dispatch, ownProps) {
+//   return {
+//     setUser(data, data2) {
+//       console.log('data', data);
+//       console.log('data2', data2);
+//       dispatch(setUser(data))
+//     }
+//   }
+// }
 
-export default Login
-// export default connect(mapStateToProps, mapDispatchToProps)(Login)
+export default connect(mapStateToProps, { loginUser })(Login);
